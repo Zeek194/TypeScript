@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+<body>
+  <script>
+    // WbeWorker
+    // 以一个 JS 文件为单位，启动模拟多线程
+    var myWorker = new Worker('./js/myWorder.js')
+    // 向另一个线程发送消息
+    myWorker.postMessage(50000)
+    // 在主线程也要绑定接收消息的事件，当子线程处理完毕后就可以拿到结果了
+    myWorker.onmessage = event => {
+      console.log(event.data)
+    }
+    console.log('今晚吃点啥')
+  </script>
+</body>
+</html>
